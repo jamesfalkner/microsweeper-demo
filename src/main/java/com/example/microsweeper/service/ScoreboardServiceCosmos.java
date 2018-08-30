@@ -85,7 +85,7 @@ public class ScoreboardServiceCosmos implements ScoreboardService {
     // The name of our collection.
     private static final String COLLECTION_ID = "ScoresCollection";
 
-    public Score createScoreItem(Score score) {
+    private Score createScoreItem(Score score) {
         // Serialize the TodoItem as a JSON Document.
         Document scoreItemDocument = new Document(score.toJSON());
 

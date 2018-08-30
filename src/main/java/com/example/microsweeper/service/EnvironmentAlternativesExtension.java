@@ -6,7 +6,7 @@ import javax.enterprise.inject.spi.ProcessAnnotatedType;
 
 public class EnvironmentAlternativesExtension implements Extension {
 
-    String environment = System.getenv("ENVIRONMENT");
+    private String environment = System.getenv("ENVIRONMENT");
     private EnvironmentType currentEnvironment = (environment != null) ?
             EnvironmentType.valueOf(environment) : EnvironmentType.DEVELOPMENT;
 
