@@ -8,7 +8,7 @@ import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;
 
 @Health
-@ApplicationPath("/")
+@ApplicationPath("/api")
 public class RestApplication extends Application implements HealthCheck {
 
 

@@ -11,20 +11,18 @@ import javax.ws.rs.core.MediaType;
 import java.util.List;
 
 @ApplicationScoped
-@Path("/api")
+@Path("/scoreboard")
 public class RestEndpoints {
 
     @Inject
     private ScoreboardService scoreboardService;
 
-    @Path("/scoreboard")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public List<Score> getScoreboard() {
         return scoreboardService.getScoreboard();
     }
 
-    @Path("/scoreboard")
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Transactional
@@ -32,7 +30,6 @@ public class RestEndpoints {
         scoreboardService.addScore(score);
     }
 
-    @Path("/scoreboard")
     @DELETE
     @Transactional
     public void clearAll() throws Exception {
