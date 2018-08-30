@@ -1,0 +1,12 @@
+swarm:
+  deployment:
+    demo.war:
+      jaxrs:
+        application-path: /
+  datasources:
+    data-sources:
+      ScoresDS:
+        driver-name: h2
+        connection-url: jdbc:h2:mem:scores;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+        user-name: sa
+        password: sa
