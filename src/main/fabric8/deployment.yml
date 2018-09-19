@@ -7,3 +7,15 @@ spec:
         - env:
           - name: GC_MAX_METASPACE_SIZE
             value: 500
+          - name: ENVIRONMENT
+            value: PRODUCTION # can be DEVELOPMENT (h2db) or PRODUCTION (cosmosdb)
+          - name: COSMOSDB_URI
+            valueFrom:
+              secretKeyRef:
+                name: cosmosdb-credentials
+                key: uri
+          - name: COSMOSDB_KEY
+            valueFrom:
+              secretKeyRef:
+                name: cosmosdb-credentials
+                key: key

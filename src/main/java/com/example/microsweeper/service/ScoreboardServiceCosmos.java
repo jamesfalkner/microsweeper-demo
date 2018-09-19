@@ -13,6 +13,7 @@ import javax.transaction.Transactional;
 import javax.transaction.UserTransaction;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
 
 import static com.example.microsweeper.service.EnvironmentType.DEVELOPMENT;
 import static com.example.microsweeper.service.EnvironmentType.PRODUCTION;
@@ -24,16 +25,15 @@ public class ScoreboardServiceCosmos implements ScoreboardService {
 
     private DocumentClient documentClient;
 
+    private Logger LOG = Logger.getLogger(ScoreboardServiceCosmos.class.getName());
 
     @PostConstruct
     public void connect() {
-        String host = System.getenv("COSMOSDB_HOST");
+        String uri = System.getenv("COSMOSDB_URI");
         String key = System.getenv("COSMOSDB_KEY");
 
-        documentClient = new DocumentClient(host, key,
+        documentClient = new DocumentClient(uri, key,
                 ConnectionPolicy.GetDefault(), ConsistencyLevel.Session);
-
-
     }
 
     public DocumentClient getDocumentClient() {
@@ -55,6 +55,7 @@ public class ScoreboardServiceCosmos implements ScoreboardService {
             scores.add(Score.fromJSON(todoItemDocument.toString()));
         }
 
+        LOG.info("Fetched scores from AzureDB: " + scores);
         return scores;
 
     }
@@ -63,11 +64,14 @@ public class ScoreboardServiceCosmos implements ScoreboardService {
     @Transactional
     public void addScore(Score score) throws Exception {
         createScoreItem(score);
+        LOG.info("Stored score in AzureDB: " + score);
     }
 
     @Override
     public void clearScores() throws Exception {
         documentClient.deleteCollection(getScoresCollection().getSelfLink(), null);
+        collectionCache = null;
+        LOG.info("Cleared scores in AzureDB");
     }
 
 

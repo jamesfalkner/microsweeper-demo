@@ -102,7 +102,7 @@ function buildTable() {
   <tr>
     <td class="menu" id="window-title-bar" colspan="${size}">
       <div id="window-title"><img src="images/mine-menu-icon.png"> Minesweeper</div>
-      <div id="window-controls"><img src="images/window-controls.png"></div>
+      <div id="window-controls"><img onclick="clearScores()" src="images/window-controls.png"></div>
     </td>
   <tr>
     <td class="menu" id="folder-bar" colspan="${size}">
@@ -155,27 +155,47 @@ function addScore(score) {
   tbody.appendChild(row);
 
 }
+
+function clearScores() {
+  try {
+
+    let xhr = new XMLHttpRequest();
+    xhr.open('DELETE', '/api/scoreboard');
+    xhr.onload = function () {
+      if (xhr.status === 204) {
+        location.reload();
+      }
+      else {
+        alert('Clear failed.  Returned status of ' + xhr.status);
+      }
+    };
+    xhr.send();
+  } catch (ex) {
+    console.log(ex);
+  }
+
+}
 function buildScores() {
 
   try {
 
-  let xhr = new XMLHttpRequest();
-  xhr.open('GET', '/api/scoreboard');
-  xhr.onload = function() {
-    if (xhr.status === 200) {
+    let xhr = new XMLHttpRequest();
+    xhr.open('GET', '/api/scoreboard');
+    xhr.onload = function () {
+      if (xhr.status === 200) {
 
-      let scores = JSON.parse(xhr.responseText);
-      document.getElementById('scoretablebody').innerHTML = '';
+        let scores = JSON.parse(xhr.responseText);
+        document.getElementById('scoretablebody').innerHTML = '';
 
-      scores.forEach(function(score) {
-        addScore(score);
-      });
-    }
-    else {
-      alert('Request failed.  Returned status of ' + xhr.status);
-    }
-  };
-  xhr.send();
+        scores.forEach(function (score) {
+          addScore(score);
+        });
+      }
+      else {
+        alert('Request failed.  Returned status of ' + xhr.status);
+      }
+    };
+    xhr.send();
   } catch (ex) {
     console.log(ex);
   }
