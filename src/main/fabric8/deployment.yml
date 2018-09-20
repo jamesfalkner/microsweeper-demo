@@ -18,4 +18,4 @@ spec:
             valueFrom:
               secretKeyRef:
                 name: cosmosdb-credentials
-                key: key
+                key: password

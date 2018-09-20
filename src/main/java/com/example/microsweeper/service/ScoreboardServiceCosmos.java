@@ -2,20 +2,16 @@ package com.example.microsweeper.service;
 
 import com.example.microsweeper.model.Score;
 import com.microsoft.azure.documentdb.*;
+import org.eclipse.microprofile.config.inject.ConfigProperty;
 
 import javax.annotation.PostConstruct;
-import javax.annotation.Resource;
 import javax.enterprise.context.ApplicationScoped;
-import javax.enterprise.inject.Alternative;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
+import javax.inject.Inject;
 import javax.transaction.Transactional;
-import javax.transaction.UserTransaction;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
-import static com.example.microsweeper.service.EnvironmentType.DEVELOPMENT;
 import static com.example.microsweeper.service.EnvironmentType.PRODUCTION;
 
 @ApplicationScoped
@@ -27,17 +23,18 @@ public class ScoreboardServiceCosmos implements ScoreboardService {
 
     private Logger LOG = Logger.getLogger(ScoreboardServiceCosmos.class.getName());
 
+    @Inject
+    @ConfigProperty(name = "COSMOSDB_URI")
+    String uri;
+
+    @Inject
+    @ConfigProperty(name = "COSMOSDB_KEY")
+    String key;
+
     @PostConstruct
     public void connect() {
-        String uri = System.getenv("COSMOSDB_URI");
-        String key = System.getenv("COSMOSDB_KEY");
-
         documentClient = new DocumentClient(uri, key,
                 ConnectionPolicy.GetDefault(), ConsistencyLevel.Session);
-    }
-
-    public DocumentClient getDocumentClient() {
-        return documentClient;
     }
 
     @Override
@@ -62,7 +59,7 @@ public class ScoreboardServiceCosmos implements ScoreboardService {
 
     @Override
     @Transactional
-    public void addScore(Score score) throws Exception {
+    public void addScore(Score score) {
         createScoreItem(score);
         LOG.info("Stored score in AzureDB: " + score);
     }
@@ -89,7 +86,7 @@ public class ScoreboardServiceCosmos implements ScoreboardService {
     // The name of our collection.
     private static final String COLLECTION_ID = "ScoresCollection";
 
-    private Score createScoreItem(Score score) {
+    private void createScoreItem(Score score) {
         // Serialize the TodoItem as a JSON Document.
         Document scoreItemDocument = new Document(score.toJSON());
 
@@ -104,10 +101,7 @@ public class ScoreboardServiceCosmos implements ScoreboardService {
                     false).getResource();
         } catch (DocumentClientException e) {
             e.printStackTrace();
-            return null;
         }
-
-        return Score.fromJSON(scoreItemDocument.toString());
     }
 
     private Database getScoreDatabase() {
