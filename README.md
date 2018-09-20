@@ -5,9 +5,10 @@ This demo uses a number of cloud technologies to implement a simple game from th
 
 Technologies include:
 
-* JQuery-based Minesweeper written by [Nick Arocho](http://www.nickarocho.com/) and available on GitHub
-* Backend baed on MicroProfile to persist scoreboard
-* Deployed using Red Hat OpenShift and the Open Service Broker to deploy Cosmos DB on Microsoft Azure
+* JQuery-based Minesweeper written by [Nick Arocho](http://www.nickarocho.com/) and [available on GitHub](https://github.com/nickarocho/minesweeper.
+* Backend baed on [MicroProfile](https://microprofile.io) and [Thorntail](https://thorntail.io) (part of [Red Hat OpenShift Application Runtimes](https://developers.redhat.com/products/rhoar/overview/) to persist scoreboard
+* Deployed using [Red Hat OpenShift](https://openshift.com) and the [Open Service Broker](https://www.openservicebrokerapi.org/) to deploy [Cosmos DB](https://azure.microsoft.com/en-us/services/cosmos-db/) on [Microsoft Azure](https://azure.microsoft.com/).
+
 
 To run demo
 -----------
@@ -26,7 +27,7 @@ These steps are necessarily high level and encompass many smaller steps that wil
 
 Then run `mvn clean package fabric8:deploy` to deploy.
 
-Once deployed access the UI using the route exposed via OpenShift. And re-live your youth like a boss.
+Once deployed access the UI using the route exposed via OpenShift. _And re-live your youth like a boss._
 
 Eye Candy
 =========
