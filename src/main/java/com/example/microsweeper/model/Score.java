@@ -1,8 +1,10 @@
 package com.example.microsweeper.model;
 
-import org.json.JSONObject;
+import org.bson.Document;
 
 import javax.persistence.*;
+import java.util.HashMap;
+import java.util.Map;
 
 @Entity
 @Table(name = "SCORES", uniqueConstraints = @UniqueConstraint(columnNames = "scoreId"))
@@ -78,22 +80,22 @@ public class Score {
         return name + "/" + level + "/" + time + "/" + success + "/" + scoreId;
     }
 
-    public String toJSON() {
-        JSONObject obj = new JSONObject();
+    public Map<String, Object> toMap() {
+        Map<String, Object> obj = new HashMap<>();
         obj.put("name", name);
         obj.put("level", level);
         obj.put("time", time);
         obj.put("success", success);
-        return obj.toString();
+        return obj;
     }
 
-    public static Score fromJSON(String json) {
-        JSONObject obj = new JSONObject(json);
+    public static Score fromDocument(Document d) {
         Score score = new Score();
-        score.name = obj.getString("name");
-        score.level = obj.getString("level");
-        score.time = obj.getInt("time");
-        score.success = obj.getBoolean("success");
+        score.setName(d.getString("name"));
+        score.setLevel(d.getString("level"));
+        score.setTime(d.getInteger("time"));
+        score.setSuccess(d.getBoolean("success"));
         return score;
     }
+
 }

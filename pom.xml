@@ -127,11 +127,11 @@
             <version>${version.h2}</version>
         </dependency>
 
-        <!-- Azure Cosmos DB -->
+        <!-- Azure Cosmos DB Mongodb -->
         <dependency>
-            <groupId>com.microsoft.azure</groupId>
-            <artifactId>azure-documentdb</artifactId>
-            <version>1.9.1</version>
+            <groupId>org.mongodb</groupId>
+            <artifactId>mongo-java-driver</artifactId>
+            <version>3.8.0</version>
         </dependency>
     </dependencies>
 </project>
