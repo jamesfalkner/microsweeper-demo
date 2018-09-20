@@ -9,13 +9,3 @@ spec:
             value: 500
           - name: ENVIRONMENT
             value: PRODUCTION # can be DEVELOPMENT (h2db) or PRODUCTION (cosmosdb)
-          - name: COSMOSDB_URI
-            valueFrom:
-              secretKeyRef:
-                name: cosmosdb-credentials
-                key: uri
-          - name: COSMOSDB_KEY
-            valueFrom:
-              secretKeyRef:
-                name: cosmosdb-credentials
-                key: password

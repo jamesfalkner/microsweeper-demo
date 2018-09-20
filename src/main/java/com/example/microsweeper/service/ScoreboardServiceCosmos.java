@@ -24,16 +24,16 @@ public class ScoreboardServiceCosmos implements ScoreboardService {
     private Logger LOG = Logger.getLogger(ScoreboardServiceCosmos.class.getName());
 
     @Inject
-    @ConfigProperty(name = "COSMOSDB_URI")
-    String uri;
+    @ConfigProperty(name = "SCORESDB_uri")
+    private String uri;
 
     @Inject
-    @ConfigProperty(name = "COSMOSDB_KEY")
-    String key;
+    @ConfigProperty(name = "SCORESDB_password")
+    private String password;
 
     @PostConstruct
     public void connect() {
-        documentClient = new DocumentClient(uri, key,
+        documentClient = new DocumentClient(uri, password,
                 ConnectionPolicy.GetDefault(), ConsistencyLevel.Session);
     }
 
@@ -127,7 +127,7 @@ public class ScoreboardServiceCosmos implements ScoreboardService {
                 } catch (DocumentClientException e) {
                     // Something has gone terribly wrong - the app wasn't
                     // able to query or create the collection.
-                    // Verify your connection, endpoint, and key.
+                    // Verify your connection, endpoint, and password.
                     e.printStackTrace();
                 }
             }
@@ -161,7 +161,7 @@ public class ScoreboardServiceCosmos implements ScoreboardService {
                 } catch (DocumentClientException e) {
                     // Something has gone terribly wrong - the app wasn't
                     // able to query or create the collection.
-                    // Verify your connection, endpoint, and key.
+                    // Verify your connection, endpoint, and password.
                     e.printStackTrace();
                 }
             }
