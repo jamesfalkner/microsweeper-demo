@@ -5,7 +5,7 @@ This demo uses a number of cloud technologies to implement a simple game from th
 
 Technologies include:
 
-* JQuery-based Minesweeper written by [Nick Arocho](http://www.nickarocho.com/) and [available on GitHub](https://github.com/nickarocho/minesweeper.
+* JQuery-based Minesweeper written by [Nick Arocho](http://www.nickarocho.com/) and [available on GitHub](https://github.com/nickarocho/minesweeper).
 * Backend baed on [MicroProfile](https://microprofile.io) and [Thorntail](https://thorntail.io) (part of [Red Hat OpenShift Application Runtimes](https://developers.redhat.com/products/rhoar/overview/) to persist scoreboard
 * Deployed using [Red Hat OpenShift](https://openshift.com) and the [Open Service Broker](https://www.openservicebrokerapi.org/) to deploy [Cosmos DB](https://azure.microsoft.com/en-us/services/cosmos-db/) on [Microsoft Azure](https://azure.microsoft.com/).
 
