@@ -60,19 +60,13 @@
         </profile>
     </profiles>
     <dependencies>
-
-        <dependency>
-            <groupId>io.thorntail</groupId>
-            <artifactId>microprofile-config</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>io.thorntail</groupId>
-            <artifactId>microprofile-health</artifactId>
-        </dependency>
         <dependency>
             <groupId>io.thorntail</groupId>
             <artifactId>jaxrs</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.thorntail</groupId>
+            <artifactId>cdi</artifactId>
         </dependency>
         <dependency>
             <groupId>io.thorntail</groupId>

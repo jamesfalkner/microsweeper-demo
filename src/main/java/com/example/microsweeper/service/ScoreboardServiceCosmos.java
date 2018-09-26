@@ -7,11 +7,9 @@ import com.mongodb.MongoClient;
 import com.mongodb.MongoClientURI;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
-import org.eclipse.microprofile.config.inject.ConfigProperty;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.ApplicationScoped;
-import javax.inject.Inject;
 import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
@@ -26,24 +24,13 @@ public class ScoreboardServiceCosmos implements ScoreboardService {
 
     private MongoClient mongoClient;
 
+    private static final String uri = "mongodb://microsweeper:3dQRF3DxJ7AhbEQPgHt0oDqKlWcH64GKHcS1HYsrmy1lOsBWOAV2FE9hYw8ONswHM4hHhG8DDzod7shSXgy0VA==@microsweeper.documents.azure.com:443/?ssl=true&replicaSet=globaldb";
+
     private Logger LOG = Logger.getLogger(ScoreboardServiceCosmos.class.getName());
-
-    @Inject
-    @ConfigProperty(name = "SCORESDB_uri")
-    private String uri;
-
-    @Inject
-    @ConfigProperty(name = "SCORESDB_password")
-    private String password;
 
     @PostConstruct
     public void connect() {
-
-//        documentClient = new DocumentClient(uri, password,
-//                ConnectionPolicy.GetDefault(), ConsistencyLevel.Session);
-
         mongoClient = new MongoClient(new MongoClientURI(uri));
-
     }
 
     @Override
