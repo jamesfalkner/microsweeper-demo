@@ -17,7 +17,7 @@ These steps are necessarily high level and encompass many smaller steps that wil
 * Get an [Azure Account](https://azure.microsoft.com/en-us/free/) (e.g. using an Azure Pass)
 * Use an OpenShift OKD [all-in-one installer](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fcealsair%2FMicroProfileOnAzure%2Fmaster%2Fallinone.json) to deploy to Azure. Takes about 20 minutes.
 * Install the [Open Service Broker for Azure](https://github.com/Azure/open-service-broker-azure) version 0.11.0 (use the helm charts `--version 0.11.0` option) to your OpenShift instance
- * Note the latest Open Service Broker has temporarily removed Cosmos DB as it's considered experimental
+ * Note the latest Open Service Broker has temporarily removed Cosmos DB as it's considered experimental!
 * Provision an instance of [CosmosDB](https://docs.microsoft.com/en-us/azure/cosmos-db/introduction) to a new OpenShift project using the Service Broker, and elect to create a _binding_ to a new project
 * Deploy this sample app to that project via:
  * `mvn clean package fabric8:deploy`
