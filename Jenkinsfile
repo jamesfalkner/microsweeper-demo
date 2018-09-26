@@ -9,13 +9,13 @@ pipeline {
                 sh "echo done"
             }
         }
-        stage('Build Microsweeper App') {
+        stage('Build App') {
             steps {
                 sh "cp .settings.xml ~/.m2/settings.xml"
                 sh "mvn clean package -Popenshift -DskipTests"
             }
         }
-        stage('Build Container Image') {
+        stage('Build Container') {
             steps {
                 script {
                     openshift.withCluster() {
@@ -24,7 +24,7 @@ pipeline {
                 }
             }
         }
-        stage('Deploy') {
+        stage('Deploy to Prod') {
             steps {
                 script {
                     openshift.withCluster() {
