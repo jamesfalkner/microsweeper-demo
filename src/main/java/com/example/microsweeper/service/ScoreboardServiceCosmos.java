@@ -2,7 +2,6 @@ package com.example.microsweeper.service;
 
 import com.example.microsweeper.model.Score;
 import org.bson.Document;
-import org.eclipse.microprofile.config.inject.ConfigProperty;
 
 import com.mongodb.MongoClient;
 import com.mongodb.MongoClientURI;
@@ -11,7 +10,6 @@ import com.mongodb.client.MongoDatabase;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.ApplicationScoped;
-import javax.inject.Inject;
 import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
@@ -23,14 +21,9 @@ import static com.example.microsweeper.service.EnvironmentType.PRODUCTION;
 @EnvironmentAlternative(PRODUCTION)
 public class ScoreboardServiceCosmos implements ScoreboardService {
 
-
     private MongoClient mongoClient;
 
-    @Inject
-    @ConfigProperty(name = "SCORESDB_uri")
-    private String uri;
-    
-    //private String uri = "mongodb://microsweeper:3dQRF3DQPgHt0oDqKlWcH64GKHcS1HYsrmy1lOsBWOAV2FE9hYw8ONswHshSXgy0VA==@demo.documents.azure.com:443/?ssl=true&replicaSet=globaldb";
+    private String uri = "mongodb://microsweeper:3dQRF3DQPgHt0oDqKlWcH64GKHcS1HYsrmy1lOsBWOAV2FE9hYw8ONswHshSXgy0VA==@demo.documents.azure.com:443/?ssl=true&replicaSet=globaldb";
 
     private Logger LOG = Logger.getLogger(ScoreboardServiceCosmos.class.getName());
 
