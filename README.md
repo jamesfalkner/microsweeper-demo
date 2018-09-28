@@ -61,6 +61,15 @@ _Browsing Minesweeper scoreboard from Azure Portal_
 
 ![Service Catalog](docs/portal.png)
 
-
-
-
+Sample Dependencies
+```xml
+		<!-- microprofile -->
+        <dependency>
+            <groupId>io.thorntail</groupId>
+            <artifactId>microprofile-health</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.thorntail</groupId>
+            <artifactId>microprofile-config</artifactId>
+        </dependency>
+```
