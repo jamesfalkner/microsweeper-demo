@@ -73,3 +73,7 @@ Sample Dependencies
             <artifactId>microprofile-config</artifactId>
         </dependency>
 ```
+
+```sh
+oc set probe dc/microsweeper --liveness --readiness --get-url=http://:8080/health --initial-delay-seconds=30 --period-seconds=15 --timeout-seconds=5 --failure-threshold=5
+```
