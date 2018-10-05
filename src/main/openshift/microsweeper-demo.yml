@@ -41,7 +41,7 @@ objects:
       sourceStrategy:
         env:
           - name: MAVEN_MIRROR_URL
-            value: 'http://nexus.lab-infra.svc:8081/repository/maven-all-public/'
+            value: ${MAVEN_MIRROR_URL}
         from:
           kind: ImageStreamTag
           name: 'redhat-openjdk18-openshift:1.3'
@@ -172,9 +172,13 @@ parameters:
   description: Git reference branch/tag
   name: GIT_REF
   required: true
-  value: master
+  value: solution
 - displayName: Environment
   description: Environment (DEVELOPMENT, STAGING, PRODUCTION)
   name: ENVIRONMENT
   required: true
   value: DEVELOPMENT
+- displayName: Maven Mirror URL
+  description: Maven Mirror URL
+  name: MAVEN_MIRROR_URL
+  required: false
