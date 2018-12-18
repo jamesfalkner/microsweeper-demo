@@ -17,17 +17,18 @@ import org.eclipse.microprofile.config.spi.ConfigSource;
 import org.jboss.logging.Logger;
 
 public class ConfigMapConfigSource implements ConfigSource {
-    
+
     private static final Logger LOG = Logger.getLogger(ConfigMapConfigSource.class);
 
     private Map<String, String> config = null;
 
     public static final String NS_PATH = "/var/run/secrets/kubernetes.io/serviceaccount/namespace";
     public static final String CONFIGMAP_NAME = "microsweeper";
+
     @Override
     public int getOrdinal() {
         return 112;
-    }    
+    }
 
     @Override
     public Set<String> getPropertyNames() {
@@ -53,8 +54,8 @@ public class ConfigMapConfigSource implements ConfigSource {
     }
 
     private void fetch() {
-        
-        if (config != null) { 
+
+        if (config != null) {
             return;
         }
 
@@ -66,7 +67,7 @@ public class ConfigMapConfigSource implements ConfigSource {
             CoreV1Api api = new CoreV1Api(client);
 
             final String ns =
-                new String(Files.readAllBytes(Paths.get(NS_PATH)), Charset.defaultCharset());
+                    new String(Files.readAllBytes(Paths.get(NS_PATH)), Charset.defaultCharset());
 
             V1ConfigMap map = api.readNamespacedConfigMap(CONFIGMAP_NAME, ns, null, null, null);
 
@@ -77,6 +78,6 @@ public class ConfigMapConfigSource implements ConfigSource {
         } catch (Exception e) {
             LOG.warn("Unable to fetch ConfigMap: " + e.getMessage() + ": ignoring");
         }
-        
+
     }
 }

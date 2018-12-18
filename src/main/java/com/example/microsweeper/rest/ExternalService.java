@@ -13,19 +13,19 @@ import javax.ws.rs.client.WebTarget;
 public class ExternalService {
 
     @Traced(operationName = "call-external-httpbin")
-    public void callExternal() {
+    void callExternal() {
 
-            for (int i = 0; i < 3; i++) {
-                Client client = ClientTracingRegistrar.configure(ClientBuilder.newBuilder()).build();
-                try {
-                    int delay = (int)Math.floor(1 + (Math.random() * 3));
-                    WebTarget target = client.target("http://httpbin.org/delay/" + delay);
-                    target.request().get();            
-                } finally {
+        for (int i = 0; i < 3; i++) {
+            Client client = ClientTracingRegistrar.configure(ClientBuilder.newBuilder()).build();
+            try {
+                int delay = (int) Math.floor(1 + (Math.random() * 3));
+                WebTarget target = client.target("http://httpbin.org/delay/" + delay);
+                target.request().get();
+            } finally {
                 client.close();
             }
 
-    }
+        }
 
     }
 }

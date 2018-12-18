@@ -22,15 +22,14 @@ public class ConfigEndpoint {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public Map<String, String> getConfig() {
-        Map<String, String> config = new HashMap<String, String>() 
-        { 
+
+        return new HashMap<String, String>()
+        {
             private static final long serialVersionUID = 1L;
 
             {
                 put("bg", bg);
-            } 
-        }; 
-        
-        return config;
+            }
+        };
     }
 }

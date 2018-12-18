@@ -24,8 +24,8 @@ public class ScoreboardServiceJPA implements ScoreboardService {
     @Override
     @Transactional
     public void addScore(Score score) {
-         em.persist(score);
-            em.flush();
+        em.persist(score);
+        em.flush();
     }
 
     @Override
