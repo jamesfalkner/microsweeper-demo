@@ -252,6 +252,7 @@ function buildCells() {
 };
 
 function init() {
+  getConfig();
   buildTable();
   board = buildArrays();
   buildCells();
@@ -263,6 +264,26 @@ function init() {
   winner = false;
   buildScores();
 };
+
+function getConfig() {
+
+  let xhr = new XMLHttpRequest();
+
+  xhr.open('GET', '/api/config');
+  xhr.onload = function () {
+    if (xhr.status === 200 || xhr.status === 204) {
+      console.log("request success: " + xhr.responseText);
+      let config = JSON.parse(xhr.responseText);
+      document.body.style.backgroundColor = config.bg;
+    }
+    else {
+      console.log("request fail: " + xhr.status);
+    }
+  };
+
+  xhr.send();
+
+}
 
 function getBombCount() {
   var count = 0;

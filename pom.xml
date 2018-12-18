@@ -9,7 +9,7 @@
     <packaging>war</packaging>
 
     <properties>
-        <version.thorntail>2.1.0.Final</version.thorntail>
+        <version.thorntail>2.2.1.Final</version.thorntail>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
         <failOnMissingWebXml>false</failOnMissingWebXml>
@@ -87,6 +87,30 @@
             <artifactId>microprofile-config</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>io.thorntail</groupId>
+            <artifactId>microprofile-opentracing</artifactId>
+        </dependency>
+         <dependency>
+            <groupId>io.thorntail</groupId>
+            <artifactId>jaeger</artifactId>
+        </dependency>
+       <dependency>
+            <groupId>io.kubernetes</groupId>
+            <artifactId>client-java</artifactId>
+            <version>4.0.0-beta2-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>com.squareup.okio</groupId>
+            <artifactId>okio</artifactId>
+            <version>2.1.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+            <version>2.8.5</version>
+        </dependency>
+        
         <dependency>
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>

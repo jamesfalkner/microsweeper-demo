@@ -10,3 +10,9 @@ swarm:
         connection-url: jdbc:h2:mem:scores;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
         user-name: sa
         password: sa
+  jaeger:
+    service-name: microsweeper
+    sampler-type: const
+    sampler-parameter: 1
+    enable-b3-header-propagation: true
+    remote-reporter-http-endpoint: 'http://jaeger-collector:14268/api/traces'

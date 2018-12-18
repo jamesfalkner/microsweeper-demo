@@ -8,15 +8,19 @@ import javax.inject.Inject;
 import javax.transaction.Transactional;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
+
 import java.util.List;
 
 @ApplicationScoped
 @Path("/scoreboard")
-public class RestEndpoints {
+public class ScoreboardEndpoint {
 
     @Inject
     private ScoreboardService scoreboardService;
-
+ 
+    @Inject
+    ExternalService externalService;
+    
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public List<Score> getScoreboard() {
@@ -27,6 +31,7 @@ public class RestEndpoints {
     @Consumes(MediaType.APPLICATION_JSON)
     @Transactional
     public void addScore(Score score) throws Exception {
+        externalService.callExternal();
         scoreboardService.addScore(score);
     }
 
