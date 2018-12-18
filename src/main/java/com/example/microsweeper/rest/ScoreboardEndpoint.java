@@ -29,14 +29,12 @@ public class ScoreboardEndpoint {
 
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
-    @Transactional
     public void addScore(Score score) throws Exception {
-        externalService.callExternal();
         scoreboardService.addScore(score);
+        externalService.callExternal();
     }
 
     @DELETE
-    @Transactional
     public void clearAll() throws Exception {
         scoreboardService.clearScores();
     }

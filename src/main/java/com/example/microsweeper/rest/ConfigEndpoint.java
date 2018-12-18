@@ -1,6 +1,5 @@
 package com.example.microsweeper.rest;
 
-import org.eclipse.microprofile.config.ConfigProvider;
 import org.eclipse.microprofile.config.inject.ConfigProperty;
 
 import java.util.HashMap;

@@ -29,6 +29,7 @@ public class ScoreboardServiceJPA implements ScoreboardService {
     }
 
     @Override
+    @Transactional
     public void clearScores() {
         em.createQuery("DELETE FROM Score").executeUpdate();
         em.flush();

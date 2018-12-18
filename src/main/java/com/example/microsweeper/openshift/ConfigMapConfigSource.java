@@ -14,9 +14,12 @@ import io.kubernetes.client.apis.CoreV1Api;
 import io.kubernetes.client.models.V1ConfigMap;
 
 import org.eclipse.microprofile.config.spi.ConfigSource;
+import org.jboss.logging.Logger;
 
 public class ConfigMapConfigSource implements ConfigSource {
     
+    private static final Logger LOG = Logger.getLogger(ConfigMapConfigSource.class);
+
     private Map<String, String> config = null;
 
     public static final String NS_PATH = "/var/run/secrets/kubernetes.io/serviceaccount/namespace";
@@ -71,11 +74,8 @@ public class ConfigMapConfigSource implements ConfigSource {
             rawConfig.keySet().forEach(key -> {
                 config.put(key, rawConfig.get(key));
             });
-
-            
         } catch (Exception e) {
-            System.err.println("Exception when calling CoreV1Api#readNamespacedConfigMap");
-            e.printStackTrace();
+            LOG.warn("Unable to fetch ConfigMap: " + e.getMessage() + ": ignoring");
         }
         
     }

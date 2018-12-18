@@ -58,6 +58,7 @@ public class ScoreboardServiceCosmos implements ScoreboardService {
     }
 
     @Override
+    @Transactional
     public void clearScores() {
         getScoresCollection().drop();
         collectionCache = null;
